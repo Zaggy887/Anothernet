@@ -14,6 +14,15 @@ import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 
 export function CapitalRaisingPage() {
+  const handleDownloadPDF = () => {
+    const link = document.createElement('a');
+    link.href = '/Capital-Raising.pdf';
+    link.download = 'Capital-Raising.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const benefits = [
     {
       icon: Users,
@@ -140,7 +149,10 @@ export function CapitalRaisingPage() {
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
-                <Button className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-navy px-6 py-3 text-lg">
+                <Button
+                  onClick={handleDownloadPDF}
+                  className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-navy px-6 py-3 text-lg"
+                >
                   Download Capital PDF
                 </Button>
               </div>

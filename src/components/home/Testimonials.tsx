@@ -18,14 +18,32 @@ export function Testimonials() {
     try {
       setLoading(true);
 
-      const fallback = {
-        id: "manual-1",
-        content:
-          "The team's professionalism and ability to deliver ahead of schedule exceeded our expectations. Highly recommend for any growth-focused business.",
-        client_name: "Sophie Bennett",
-        client_role: "Managing Director, Apex Partners",
-        rating: 5,
-      };
+      const fallbackTestimonials = [
+        {
+          id: "manual-1",
+          content:
+            "The team's professionalism and ability to deliver ahead of schedule exceeded our expectations. Highly recommend for any growth-focused business.",
+          client_name: "Sophie Bennett",
+          client_role: "Managing Director, Apex Partners",
+          rating: 5,
+        },
+        {
+          id: "manual-2",
+          content:
+            "Outstanding advisory throughout our Series A. Their network opened doors we couldn't access on our own, and the deal terms exceeded our targets.",
+          client_name: "Marcus Chen",
+          client_role: "CEO, TechVenture Solutions",
+          rating: 5,
+        },
+        {
+          id: "manual-3",
+          content:
+            "Invaluable guidance during our acquisition process. Their strategic insight and negotiation expertise helped us achieve a successful exit with maximum value.",
+          client_name: "Jennifer Walsh",
+          client_role: "Founder, Industrial Dynamics Group",
+          rating: 5,
+        },
+      ];
 
       if (supabase) {
         const { data, error } = await supabase
@@ -38,12 +56,12 @@ export function Testimonials() {
         if (error) throw error;
 
         if (data && data.length > 0) {
-          setTestimonials([...data, fallback]);
+          setTestimonials(data);
         } else {
-          setTestimonials([fallback]);
+          setTestimonials(fallbackTestimonials);
         }
       } else {
-        setTestimonials([fallback]);
+        setTestimonials(fallbackTestimonials);
       }
     } catch (err) {
       console.error("Error loading testimonials:", err);
@@ -51,9 +69,25 @@ export function Testimonials() {
         {
           id: "manual-1",
           content:
-            "The team’s professionalism and ability to deliver ahead of schedule exceeded our expectations. Highly recommend for any growth-focused business.",
+            "The team's professionalism and ability to deliver ahead of schedule exceeded our expectations. Highly recommend for any growth-focused business.",
           client_name: "Sophie Bennett",
           client_role: "Managing Director, Apex Partners",
+          rating: 5,
+        },
+        {
+          id: "manual-2",
+          content:
+            "Outstanding advisory throughout our Series A. Their network opened doors we couldn't access on our own, and the deal terms exceeded our targets.",
+          client_name: "Marcus Chen",
+          client_role: "CEO, TechVenture Solutions",
+          rating: 5,
+        },
+        {
+          id: "manual-3",
+          content:
+            "Invaluable guidance during our acquisition process. Their strategic insight and negotiation expertise helped us achieve a successful exit with maximum value.",
+          client_name: "Jennifer Walsh",
+          client_role: "Founder, Industrial Dynamics Group",
           rating: 5,
         },
       ]);

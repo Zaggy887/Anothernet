@@ -102,16 +102,38 @@ export function Mandates() {
   }, []);
 
   async function loadMandates() {
-    const fallback = {
-      id: "manual-1",
-      title: "SaaS Platform Seeking Series B",
-      deal_type: "Capital Raising",
-      sector: "Technology",
-      deal_size: "$20M - $30M",
-      status: "Active",
-      description:
-        "Fast-growing enterprise software company with $15M ARR seeking $25M Series B to accelerate product development and market expansion across APAC.",
-    };
+    const fallbackMandates = [
+      {
+        id: "manual-1",
+        title: "SaaS Platform Seeking Series B",
+        deal_type: "Capital Raising",
+        sector: "Technology",
+        deal_size: "$20M - $30M",
+        status: "Active",
+        description:
+          "Fast-growing enterprise software company with $15M ARR seeking $25M Series B to accelerate product development and market expansion across APAC.",
+      },
+      {
+        id: "manual-2",
+        title: "Manufacturing Acquisition Target",
+        deal_type: "M&A Advisory",
+        sector: "Manufacturing",
+        deal_size: "$40M - $50M",
+        status: "Active",
+        description:
+          "Established precision components manufacturer with strong EBITDA margins seeking strategic buyer or majority recapitalization.",
+      },
+      {
+        id: "manual-3",
+        title: "Healthcare Tech Partnership",
+        deal_type: "Strategic Partnerships",
+        sector: "Healthcare",
+        deal_size: "N/A",
+        status: "Active",
+        description:
+          "Medical device innovator seeking distribution partners in Southeast Asia with established hospital networks.",
+      },
+    ];
 
     if (supabase) {
       const { data } = await supabase
@@ -121,9 +143,9 @@ export function Mandates() {
         .order("created_at", { ascending: false })
         .limit(3);
 
-      setMandates(data?.length ? [...data, fallback] : [fallback]);
+      setMandates(data?.length ? data : fallbackMandates);
     } else {
-      setMandates([fallback]);
+      setMandates(fallbackMandates);
     }
   }
 

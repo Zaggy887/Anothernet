@@ -39,11 +39,13 @@ export function Contact() {
     setError('');
 
     try {
-      const { error: submitError } = await supabase
-        .from('contact_submissions')
-        .insert([formData]);
+      if (supabase) {
+        const { error: submitError } = await supabase
+          .from('contact_submissions')
+          .insert([formData]);
 
-      if (submitError) throw submitError;
+        if (submitError) throw submitError;
+      }
 
       setIsSuccess(true);
       setFormData({ name: '', email: '', company: '', message: '' });

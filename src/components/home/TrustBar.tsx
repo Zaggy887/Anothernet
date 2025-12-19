@@ -11,14 +11,15 @@ export function TrustBar() {
   }, []);
 
   async function loadCompanies() {
-    const { data } = await supabase
-      .from('trusted_companies')
-      .select('*')
-      .order('order_index');
+    if (supabase) {
+      const { data } = await supabase
+        .from('trusted_companies')
+        .select('*')
+        .order('order_index');
 
-    if (data) {
-      // Duplicate for seamless loop
-      setCompanies([...data, ...data]);
+      if (data) {
+        setCompanies([...data, ...data]);
+      }
     }
   }
 

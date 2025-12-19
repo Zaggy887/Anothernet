@@ -87,31 +87,35 @@ export function Services() {
   }, []);
 
   async function loadServices() {
-    const { data } = await supabase
-      .from('services')
-      .select('*')
-      .order('order_index')
-      .limit(4);
+    if (supabase) {
+      const { data } = await supabase
+        .from('services')
+        .select('*')
+        .order('order_index')
+        .limit(4);
 
-    if (data && data.length > 0) {
-      setServices(data);
-    } else {
-      setServices([
-        {
-          id: '1',
-          title: 'Capital Raising',
-          short_description: 'Connect with the right investors to fuel your growth. From seed to Series C and beyond.',
-          icon: 'TrendingUp',
-          order_index: 1,
-        },
-        {
-          id: '2',
-          title: 'M&A Advisory',
-          short_description: 'Expert guidance through mergers, acquisitions, and strategic exits with maximum value.',
-          icon: 'Handshake',
-          order_index: 2,
-        },
-        {
+      if (data && data.length > 0) {
+        setServices(data);
+        return;
+      }
+    }
+
+    setServices([
+      {
+        id: '1',
+        title: 'Capital Raising',
+        short_description: 'Connect with the right investors to fuel your growth. From seed to Series C and beyond.',
+        icon: 'TrendingUp',
+        order_index: 1,
+      },
+      {
+        id: '2',
+        title: 'M&A Advisory',
+        short_description: 'Expert guidance through mergers, acquisitions, and strategic exits with maximum value.',
+        icon: 'Handshake',
+        order_index: 2,
+      },
+      {
           id: '3',
           title: 'Strategic Partnerships',
           short_description: 'Build powerful alliances that accelerate market reach and unlock new opportunities.',
@@ -126,7 +130,6 @@ export function Services() {
           order_index: 4,
         },
       ]);
-    }
   }
 
   return (

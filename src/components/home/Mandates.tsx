@@ -102,13 +102,6 @@ export function Mandates() {
   }, []);
 
   async function loadMandates() {
-    const { data } = await supabase
-      .from("mandates")
-      .select("*")
-      .eq("featured", true)
-      .order("created_at", { ascending: false })
-      .limit(3);
-
     const fallback = {
       id: "manual-1",
       title: "SaaS Platform Seeking Series B",
@@ -120,7 +113,18 @@ export function Mandates() {
         "Fast-growing enterprise software company with $15M ARR seeking $25M Series B to accelerate product development and market expansion across APAC.",
     };
 
-    setMandates(data?.length ? [...data, fallback] : [fallback]);
+    if (supabase) {
+      const { data } = await supabase
+        .from("mandates")
+        .select("*")
+        .eq("featured", true)
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      setMandates(data?.length ? [...data, fallback] : [fallback]);
+    } else {
+      setMandates([fallback]);
+    }
   }
 
   return (

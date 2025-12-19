@@ -993,35 +993,37 @@ useEffect(() => {
   setMandates(seedData);
 
   // 2️⃣ Load Supabase data in background
-  (async () => {
-    try {
-      const { data, error } = await supabase
-        .from('mandates')
-        .select('*')
-        .order('created_at', { ascending: false });
+  if (supabase) {
+    (async () => {
+      try {
+        const { data, error } = await supabase
+          .from('mandates')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-      if (error) throw error;
+        if (error) throw error;
 
-      if (Array.isArray(data) && data.length > 0) {
-        const seen = new Set(data.map((m: any) => (m.title || '').toLowerCase()));
-        const merged = [
-          ...data,
-          ...seedData.filter((m) => !seen.has((m.title || '').toLowerCase())),
-        ] as Mandate[];
+        if (Array.isArray(data) && data.length > 0) {
+          const seen = new Set(data.map((m: any) => (m.title || '').toLowerCase()));
+          const merged = [
+            ...data,
+            ...seedData.filter((m) => !seen.has((m.title || '').toLowerCase())),
+          ] as Mandate[];
 
-        merged.sort(
-          (a, b) =>
-            new Date(b.created_at || 0).getTime() -
-            new Date(a.created_at || 0).getTime()
-        );
+          merged.sort(
+            (a, b) =>
+              new Date(b.created_at || 0).getTime() -
+              new Date(a.created_at || 0).getTime()
+          );
 
-        setMandates(merged);
-        console.log('Updated mandates from Supabase:', merged.length);
+          setMandates(merged);
+          console.log('Updated mandates from Supabase:', merged.length);
+        }
+      } catch (err) {
+        console.warn('Supabase load failed, using local seed only:', err);
       }
-    } catch (err) {
-      console.warn('Supabase load failed, using local seed only:', err);
-    }
-  })();
+    })();
+  }
 }, []);
 
 

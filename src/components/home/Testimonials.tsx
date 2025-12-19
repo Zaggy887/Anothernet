@@ -17,26 +17,31 @@ export function Testimonials() {
   async function loadTestimonials() {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from("testimonials")
-        .select("*")
-        .eq("featured", true)
-        .order("created_at", { ascending: false })
-        .limit(3);
-
-      if (error) throw error;
 
       const fallback = {
         id: "manual-1",
         content:
-          "The team’s professionalism and ability to deliver ahead of schedule exceeded our expectations. Highly recommend for any growth-focused business.",
+          "The team's professionalism and ability to deliver ahead of schedule exceeded our expectations. Highly recommend for any growth-focused business.",
         client_name: "Sophie Bennett",
         client_role: "Managing Director, Apex Partners",
         rating: 5,
       };
 
-      if (data && data.length > 0) {
-        setTestimonials([...data, fallback]);
+      if (supabase) {
+        const { data, error } = await supabase
+          .from("testimonials")
+          .select("*")
+          .eq("featured", true)
+          .order("created_at", { ascending: false })
+          .limit(3);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          setTestimonials([...data, fallback]);
+        } else {
+          setTestimonials([fallback]);
+        }
       } else {
         setTestimonials([fallback]);
       }

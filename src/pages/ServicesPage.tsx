@@ -71,20 +71,24 @@ export function ServicesPage() {
   useEffect(() => {
     // ✅ Fetch in background, but show fallback instantly
     let isMounted = true;
-    (async () => {
-      try {
-        const { data, error } = await supabase
-          .from('services')
-          .select('*')
-          .order('order_index');
+    if (supabase) {
+      (async () => {
+        try {
+          const { data, error } = await supabase
+            .from('services')
+            .select('*')
+            .order('order_index');
 
-        if (!error && data && isMounted) {
-          setServices(data);
+          if (!error && data && isMounted) {
+            setServices(data);
+          }
+        } finally {
+          if (isMounted) setLoading(false);
         }
-      } finally {
-        if (isMounted) setLoading(false);
-      }
-    })();
+      })();
+    } else {
+      setLoading(false);
+    }
     return () => {
       isMounted = false;
     };

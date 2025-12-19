@@ -11,16 +11,28 @@ export function TrustBar() {
   }, []);
 
   async function loadCompanies() {
+    const fallbackCompanies = [
+      { id: '1', name: 'TechVentures Capital', order_index: 1 },
+      { id: '2', name: 'Global Growth Partners', order_index: 2 },
+      { id: '3', name: 'Nexus Investment Group', order_index: 3 },
+      { id: '4', name: 'Apex Strategic Advisors', order_index: 4 },
+      { id: '5', name: 'Summit Capital Partners', order_index: 5 },
+      { id: '6', name: 'Momentum Ventures', order_index: 6 },
+    ];
+
     if (supabase) {
       const { data } = await supabase
         .from('trusted_companies')
         .select('*')
         .order('order_index');
 
-      if (data) {
+      if (data && data.length > 0) {
         setCompanies([...data, ...data]);
+        return;
       }
     }
+
+    setCompanies([...fallbackCompanies, ...fallbackCompanies]);
   }
 
   return (

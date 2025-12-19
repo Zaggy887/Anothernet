@@ -141,12 +141,14 @@ export function CapitalRaisingPage() {
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Button>
                 </Link>
-                <Button
-                  onClick={handleDownloadPDF}
-                  className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-navy px-6 py-3 text-lg"
-                >
-                  Download Capital PDF
-                </Button>
+               <a
+  href="/Capital-Raising.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-navy px-6 py-3 text-lg rounded-lg transition"
+>
+  Download Capital PDF
+</a>
               </div>
             </div>
 

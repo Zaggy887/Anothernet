@@ -14,14 +14,6 @@ import { Card } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 
 export function CapitalRaisingPage() {
-  const handleDownloadPDF = () => {
-    const link = document.createElement('a');
-    link.href = '/Capital-Raising.pdf';
-    link.download = 'Capital-Raising.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   const benefits = [
     {

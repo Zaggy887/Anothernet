@@ -155,7 +155,7 @@ export function PartnershipsPage() {
               </Button>
             </Link>
            <a
-  href="/Capital-Raising.pdf"
+  href="/Strategic_Part.pdf"
   target="_blank"
   rel="noopener noreferrer"
   className="inline-flex items-center justify-center bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-navy px-6 py-3 rounded-lg transition"

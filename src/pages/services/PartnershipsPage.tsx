@@ -152,11 +152,14 @@ export function PartnershipsPage() {
               <Button className="bg-hot-pink text-white hover:bg-hot-pink/90 border-0 shadow-2xl">
                 Explore Partnerships
                 <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-            <Button className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-navy">
-              Download Partnerships PDF
-            </Button>
+            <a
+  href="/Capital-Raising.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-navy px-6 py-3 rounded-lg transition"
+>
+  Download Partnerships PDF
+</a>
           </div>
         </div>
       </section>

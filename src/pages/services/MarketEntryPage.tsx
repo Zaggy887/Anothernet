@@ -160,7 +160,9 @@ export function MarketEntryPage() {
                   <Button className="bg-[#FFB800] text-navy hover:bg-[#FFDB33] border-0 shadow-2xl">
                     Plan Your Expansion
                     <ArrowRight className="w-5 h-5" />
-                 <a
+                  </Button>
+                </Link>
+               <a
   href="/Capital-Raising.pdf"
   target="_blank"
   rel="noopener noreferrer"

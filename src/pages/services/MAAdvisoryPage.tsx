@@ -160,9 +160,14 @@ export function MAAdvisoryPage() {
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>
-            <Button className="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-vivid-purple">
-              Download M&A PDF
-            </Button>
+            <a
+  href="/Capital-Raising.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-vivid-purple px-6 py-3 rounded-lg transition"
+>
+  Download M&A PDF
+</a>
           </div>
 
         <div className="mt-16 grid grid-cols-3 sm:gap-6 gap-3 sm:mx-0 mx-2">
